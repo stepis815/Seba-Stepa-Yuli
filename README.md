@@ -1,2 +1,2 @@
-# Seba-Stepa-Yuli
+# Seba-Stepa-Yuli ročníková práce
 skup. prace
