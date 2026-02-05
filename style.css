@@ -1,0 +1,62 @@
+.vedlesebe {
+    display: flex;
+    gap: 20px;
+}
+
+
+.podsebou {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+ 
+
+.max {
+    flex-grow: 1;
+}
+ 
+
+.sZelena {
+    background-color: chartreuse;
+}
+ 
+
+.cervena {
+    background-color: firebrick;
+}
+ 
+
+.cerna {
+    background-color: rgb(1, 1, 1);
+}
+
+.bila{
+    background-color: white;
+}
+
+.tZelena {
+    background-color: hsl(140, 42%, 60.8%);
+}
+ 
+
+.min {
+    min-height: 120px;
+    min-width: 120px;
+}
+
+.nim {
+    min-height: 250px;
+    min-width: 250px;
+}
+ 
+.obrazovka {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+ 
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
