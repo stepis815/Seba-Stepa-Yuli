@@ -15,33 +15,18 @@
     flex-grow: 1;
    padding: 5px;
 }
- 
 
-.sZelena {
-    background-color: chartreuse;
-}
- 
-
-.cervena {
-    background-color: firebrick;
-}
- 
-
-.cerna {
-    background-color: rgb(1, 1, 1);
+ .p1 {
+  font-style: italic;
 }
 
 .seda {
     background-color: grey;
 }
-
-.bila{
-    background-color: white;
+.babyblue{
+    background-color: rgb(69, 191, 228);
 }
 
-.tZelena {
-    background-color: hsl(140, 42%, 60.8%);
-}
  
 
 .min {
