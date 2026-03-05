@@ -1,4 +1,4 @@
-# Seba-Stepa-Yuli vbef 
+# Seba-Stepa-Yuli
 
 skup prace seby,stepy a yuliho neboli -
 "abiciozny" projekt tří kluků, kteří *nemají tušení* co dělají.
