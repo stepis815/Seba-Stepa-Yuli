@@ -7,18 +7,63 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="obrazovka podsebou">
-    <div class="divnozluta min p1"><center><big><h1>vařme se strejdou Polchvarnou</h1></big></center></div>
-    <div class="vedlesebe max">
-          <div class="divnozluta min"><h1><center>LORE</center></h1></div>
-          <div class="podsebou max">
-              <div class="jinozelena max"><center><big><h1>obsah hry = 2d vařící hra s pohlreichem</h1></big></center>
-              <center><button class="tlacitko1 font"><div></div><center>plan vyvoje</center></button></center>
-              <center><button class="tlacitko1 font"><div ><center>info o vyvoji</center></button></center>
-              <center><button class="tlacitko1 font"<div ><center>info o polhreichovi</center></button></center>
-          
-            </div>
-          </div>
-    </div>  
+    <div class="divnozluta min p1">
+      <h1>vařme se strejdou Polchvarnou</h1>
     </div>
+
+    <div class="vedlesebe max">
+      <div class="babyblue min sidebar">
+        <h1>LORE</h1>
+      </div>
+
+      <div class="podsebou max">
+        <div class="jinozelena max hlavni">
+          <h1>obsah hry = 2d vařící hra s pohlreichem</h1>
+
+          <div class="buttons-wrapper">
+            <button class="tlacitko1 font" onclick="expand(this)">plan vyvoje</button>
+            <button class="tlacitko1 font" onclick="expand(this)">info o vyvoji</button>
+            <button class="tlacitko1 font" onclick="expand(this)">info o polhreichovi</button>
+          </div>
+
+          <p id="expand-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const texts = {
+        "plan vyvoje": "Tady je text pro plan vyvoje...",
+        "info o vyvoji": "Tady je text pro info o vyvoji...",
+        "info o polhreichovi": "Tady je text pro info o polhreichovi..."
+      };
+
+      let active = null;
+
+      function expand(btn) {
+        const allBtns = document.querySelectorAll('.tlacitko1');
+        const textEl = document.getElementById('expand-text');
+
+        if (active === btn) {
+          // close it
+          allBtns.forEach(b => b.style.display = 'block');
+          btn.classList.remove('expanded');
+          textEl.style.display = 'none';
+          active = null;
+          return;
+        }
+
+        allBtns.forEach(b => {
+          b.style.display = 'none';
+          b.classList.remove('expanded');
+        });
+
+        btn.style.display = 'block';
+        btn.classList.add('expanded');
+        textEl.textContent = texts[btn.textContent.trim()];
+        textEl.style.display = 'block';
+        active = btn;
+      }
+    </script>
   </body>
 </html>

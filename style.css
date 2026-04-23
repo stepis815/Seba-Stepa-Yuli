@@ -1,92 +1,109 @@
-.vedlesebe {
-    display: flex;
-    gap: px;
-    margin: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.obrazovka {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 
 .podsebou {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.vedlesebe {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  flex-grow: 1;
 }
 
 .max {
-    flex-grow: 1;
-   padding: 2px;
-   margin: 0;
+  flex-grow: 1;
 }
-
- .p1 {
-  font-family: cursive, serif;  
-}
-
-.font{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: large;
-    text-align: center;
-}
-.tlacitko1{
-margin: 0 auto;
-    background-color:rgb(218, 248, 162);
-    width: 1000px;
-    min-height: 100px;
-   
-    /*tohle je gap mezi tlacitkama na vysku */
-    margin-bottom: 30px;
-}
-
-/*kdyz prejdedeme na tlacitko */
-button:hover{
-background-color: rgb(233, 255, 33);
-border-radius: 5px;
-}
-
 
 .min {
-    min-height: 120px;
-    min-width: 120px;
-    padding: 0%;
-    margin: 0;
-    
+  min-height: 60px;
+  min-width: 120px;
 }
 
-.nim {
-    min-height: 250px;
-    min-width: 250px;
-}
- 
-.obrazovka {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
- 
-
-html, body {
-    margin: 0;
-    padding: 0;
+.sidebar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10px;
 }
 
-
-
-.seda {
-    background-color: rgb(214, 214, 214);
-}
-.babyblue{
-    background-color: rgb(44, 200, 248);
-}
-
-.piskobila{
-    background-color:rgb(252, 175, 147);
-    border-radius: 10px;
+.hlavni {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
 }
 
-.divnozluta{
-    background-color: rgb(237, 247, 153);
+.hlavni h1 {
+  text-align: center;
 }
 
-.jinozelena{
-   background-color: rgb(198, 248, 106);
+.buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 }
+
+.tlacitko1 {
+  background-color: rgb(218, 248, 162);
+  width: 1000px;
+  min-height: 100px;
+  border: none;
+  cursor: pointer;
+}
+
+.tlacitko1.expanded {
+  min-height: 200px;
+}
+
+button:hover {
+  background-color: rgb(233, 255, 33);
+  border-radius: 5px;
+}
+
+#expand-text {
+  display: none;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.p1 h1 {
+  font-family: cursive, serif;
+  text-align: center;
+  padding: 10px;
+}
+
+.font {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  text-align: center;
+}
+
+.seda { background-color: rgb(214, 214, 214); }
+.babyblue { background-color: rgb(44, 200, 248); }
+.piskobila { background-color: rgb(252, 175, 147); border-radius: 10px; }
+.divnozluta { background-color: rgb(237, 247, 153); }
+.jinozelena { background-color: rgb(198, 248, 106); }
