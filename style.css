@@ -1,31 +1,25 @@
 .vedlesebe {
     display: flex;
-    gap: 20px;
+    gap: px;
+    margin: 0;
 }
 
 
 .podsebou {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 0px;
+    margin: 0;
 }
- 
 
 .max {
     flex-grow: 1;
-   padding: 5px;
+   padding: 2px;
+   margin: 0;
 }
 
  .p1 {
   font-family: cursive, serif;  
-}
-
-
-.seda {
-    background-color: rgb(179, 179, 179);
-}
-.babyblue{
-    background-color: rgb(44, 200, 248);
 }
 
 .font{
@@ -34,17 +28,27 @@
     text-align: center;
 }
 .tlacitko1{
-    margin-top: 100px;
-    margin-right: 500px;
-    margin-left: 500px;
-    background-color: red;
+margin: 0 auto;
+    background-color:rgb(218, 248, 162);
+    width: 1000px;
+    min-height: 100px;
+   
+    /*tohle je gap mezi tlacitkama na vysku */
+    margin-bottom: 30px;
 }
- 
+
+/*kdyz prejdedeme na tlacitko */
+button:hover{
+background-color: rgb(233, 255, 33);
+border-radius: 5px;
+}
+
 
 .min {
     min-height: 120px;
     min-width: 120px;
-    padding: 5px;
+    padding: 0%;
+    margin: 0;
     
 }
 
@@ -63,4 +67,26 @@
 html, body {
     margin: 0;
     padding: 0;
+}
+
+
+
+.seda {
+    background-color: rgb(214, 214, 214);
+}
+.babyblue{
+    background-color: rgb(44, 200, 248);
+}
+
+.piskobila{
+    background-color:rgb(252, 175, 147);
+    border-radius: 10px;
+}
+
+.divnozluta{
+    background-color: rgb(237, 247, 153);
+}
+
+.jinozelena{
+   background-color: rgb(198, 248, 106);
 }
