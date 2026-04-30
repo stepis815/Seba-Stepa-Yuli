@@ -115,6 +115,12 @@ button:hover {
     
 }
 
+.h10{
+  text-align: right;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 70px;
+  padding-right: 120px;
+}
 .seda { background-color: rgb(214, 214, 214); }
 .babyblue { background-color: rgb(44, 200, 248); }
 .piskobila { background-color: rgb(252, 175, 147); border-radius: 10px; }
