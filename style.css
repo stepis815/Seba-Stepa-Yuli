@@ -38,11 +38,16 @@ html, body {
   min-width: 120px;
 }
 
+.maxi{
+  padding-right: 5%;
+}
+
 .sidebar {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 10px;
+ padding-right: 33%;
 }
 
 .hlavni {
