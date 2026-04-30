@@ -108,6 +108,13 @@ button:hover {
   text-align: center;
 }
 
+.center{
+    position: absolute;
+    top: 350px;
+
+    
+}
+
 .seda { background-color: rgb(214, 214, 214); }
 .babyblue { background-color: rgb(44, 200, 248); }
 .piskobila { background-color: rgb(252, 175, 147); border-radius: 10px; }
