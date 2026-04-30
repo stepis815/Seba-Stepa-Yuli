@@ -94,11 +94,12 @@ button:hover {
   font-family: cursive, serif;
   text-align: center;
   padding: 10px;
+  font-size: 70px;
 }
 
 .font {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: large;
+  font-size: 70px;
   text-align: center;
 }
 
