@@ -77,6 +77,12 @@ html, body {
   border: none;
   cursor: pointer;
 }
+.tlacitko2 {
+  background-color: rgb(218, 248, 162);
+  width: 50%;
+  height: 200px;
+  border: none;
+}
 
 .tlacitko1.expanded {
   min-height: 200px;
