@@ -28,6 +28,12 @@ html, body {
   gap: 0;
   flex-grow: 1;
 }
+.pad50{
+  padding: 50px;
+}
+.mar50{
+  margin: 50px;
+}
 
 .max {
   flex-grow: 1;
