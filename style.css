@@ -47,7 +47,7 @@ html, body {
   align-items: flex-start;
   justify-content: center;
   padding-top: 10px;
- padding-right: 33%;
+ padding-right: 27%;
 }
 
 .hlavni {
@@ -72,7 +72,7 @@ html, body {
 
 .tlacitko1 {
   background-color: rgb(194, 241, 243);
-  width: 1000px;
+  width: 900px;
   min-height: 100px;
   border: none;
   cursor: pointer;
@@ -117,18 +117,22 @@ button:hover {
 .center{
     position: absolute;
     top: 350px;
-
     
 }
 
  .Limelight{
   font-family: "Limelight", sans-serif;
-  font-weight: 400;
-  font-style: normal;
   font-size: 70px;
   padding-bottom: 20px;
   text-align: center;
   color: white;
+}
+
+.titanic {
+  font-family: "Titan One", sans-serif;
+    font-size: 60px;
+ text-align: center;
+ padding-left: 220%;
 }
 
 .h10{
