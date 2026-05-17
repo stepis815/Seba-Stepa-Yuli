@@ -11,8 +11,8 @@ html, body {
 }
 
 .obrazovka {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -28,9 +28,16 @@ html, body {
   gap: 0;
   flex-grow: 1;
 }
+.sizeImg{
+  height: 120px;
+  width: 250px;
+  padding: 15px;
+}
+
 .pad50{
   padding: 50px;
 }
+
 .mar50{
   margin: 50px;
 }
@@ -46,6 +53,10 @@ html, body {
 
 .maxi{
   width: 150px;
+}
+
+.flex{
+  display: flex;
 }
 
 .sidebar {
@@ -125,8 +136,7 @@ button:hover {
 }
 
 .center{
-    position: absolute;
-    top: 350px;
+    justify-content: center;
     
 }
 
