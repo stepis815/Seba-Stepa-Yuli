@@ -7,21 +7,255 @@
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Limelight&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Limelight&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .obrazovka {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .viewer-container {
+            position: relative;
+            flex: 1 1 0;
+            min-height: 0;
+            overflow: hidden;
+            background-color: rgb(223, 241, 241);
+            cursor: grab;
+            user-select: none;
+        }
+
+        .viewer-container:active {
+            cursor: grabbing;
+        }
+
+        .viewer-inner {
+            position: absolute;
+            top: 0; left: 0;
+            transform-origin: 0 0;
+            will-change: transform;
+        }
+
+        .viewer-inner img {
+            display: block;
+            max-width: none;
+        }
+
+        .viewer-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .viewer-controls button {
+            width: 44px;
+            height: 44px;
+            font-size: 22px;
+            border: none;
+            border-radius: 8px;
+            background: rgb(194, 241, 243);
+            cursor: pointer;
+            line-height: 1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: background 0.15s;
+        }
+
+        .viewer-controls button:hover {
+            background-color: rgb(111, 204, 247);
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-family: "Audiowide", sans-serif;
+            font-size: 12px;
+            color: rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+
+        .back-bar {
+            text-align: center;
+            padding-top: 10px;
+            flex-shrink: 0;
+            background-color: rgb(223, 241, 241);
+        }
+    </style>
 </head>
 <body>
-    <div class="obrazovka podsebou ">
-    <div class="min Limelight sedsiseda">Vařme se strejdou Polchvarnou</div>
-    <div class="max podsebou">
+    <div class="obrazovka">
+        <div class="min Limelight sedsiseda">Vařme se strejdou Polchvarnou</div>
 
-         <div style="text-align: center; width: 100%; padding-top: 30px;">
-    <a href="hlavni.html" style="text-decoration: none;">
-        <button class="tlacitko1 kachna">Zpět</button>
-    </a>
-    <div style="text-align: center; margin: auto; padding-top: 60px;">
-        <img class="center" src="imgs/vyvojak.svg" alt=""></div>
-</div>
-    
+        <div class="back-bar babyblue">
+            <a href="hlavni.html" style="text-decoration: none;">
+                <button class="tlacitko1 kachna">Zpět</button>
+            </a>
+        </div>
+
+        <!-- Pan & Zoom Viewer -->
+        <div class="viewer-container" id="viewer">
+            <div class="viewer-inner" id="viewerInner">
+                <img src="imgs/vyvojak.svg" alt="Plán vývoje" id="viewerImg" draggable="false">
+            </div>
+
+            <div class="viewer-controls">
+                <button id="btnZoomIn" title="Přiblížit">+</button>
+                <button id="btnReset" title="Reset">⟳</button>
+                <button id="btnZoomOut" title="Oddálit">−</button>
+            </div>
+
+            <div class="zoom-hint">Scroll pro zoom · Táhni pro posouvání</div>
+        </div>
+    </div>
+
+    <script>
+        const viewer = document.getElementById('viewer');
+        const inner = document.getElementById('viewerInner');
+        const img = document.getElementById('viewerImg');
+
+        let scale = 1;
+        let offsetX = 0;
+        let offsetY = 0;
+        let isDragging = false;
+        let startX, startY;
+
+        const MIN_SCALE = 0.1;
+        const MAX_SCALE = 8;
+        const ZOOM_STEP = 0.15;
+
+        function applyTransform() {
+            inner.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+        }
+
+        function centerImage() {
+            const vw = viewer.clientWidth;
+            const vh = viewer.clientHeight;
+            const iw = img.naturalWidth || 800;
+            const ih = img.naturalHeight || 600;
+
+            scale = Math.min(vw / iw, vh / ih) * 0.9;
+            offsetX = (vw - iw * scale) / 2;
+            offsetY = (vh - ih * scale) / 2;
+            applyTransform();
+        }
+
+        img.addEventListener('load', centerImage);
+        if (img.complete && img.naturalWidth) centerImage();
+
+        // Scroll to zoom
+        viewer.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const rect = viewer.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            const delta = e.deltaY < 0 ? 1 + ZOOM_STEP : 1 - ZOOM_STEP;
+            const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * delta));
+            offsetX = mouseX - (mouseX - offsetX) * (newScale / scale);
+            offsetY = mouseY - (mouseY - offsetY) * (newScale / scale);
+            scale = newScale;
+            applyTransform();
+        }, { passive: false });
+
+        // Drag to pan
+        viewer.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return;
+            isDragging = true;
+            startX = e.clientX - offsetX;
+            startY = e.clientY - offsetY;
+        });
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            offsetX = e.clientX - startX;
+            offsetY = e.clientY - startY;
+            applyTransform();
+        });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+
+        // Touch support
+        let lastTouchDist = null;
+        let touchMidX, touchMidY;
+
+        viewer.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - offsetX;
+                startY = e.touches[0].clientY - offsetY;
+            } else if (e.touches.length === 2) {
+                isDragging = false;
+                lastTouchDist = Math.hypot(
+                    e.touches[1].clientX - e.touches[0].clientX,
+                    e.touches[1].clientY - e.touches[0].clientY
+                );
+                const rect = viewer.getBoundingClientRect();
+                touchMidX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+                touchMidY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+            }
+        }, { passive: true });
+
+        viewer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (e.touches.length === 1 && isDragging) {
+                offsetX = e.touches[0].clientX - startX;
+                offsetY = e.touches[0].clientY - startY;
+                applyTransform();
+            } else if (e.touches.length === 2) {
+                const dist = Math.hypot(
+                    e.touches[1].clientX - e.touches[0].clientX,
+                    e.touches[1].clientY - e.touches[0].clientY
+                );
+                if (lastTouchDist) {
+                    const delta = dist / lastTouchDist;
+                    const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * delta));
+                    offsetX = touchMidX - (touchMidX - offsetX) * (newScale / scale);
+                    offsetY = touchMidY - (touchMidY - offsetY) * (newScale / scale);
+                    scale = newScale;
+                    applyTransform();
+                }
+                lastTouchDist = dist;
+            }
+        }, { passive: false });
+
+        viewer.addEventListener('touchend', () => {
+            isDragging = false;
+            lastTouchDist = null;
+        });
+
+        // Buttons
+        document.getElementById('btnZoomIn').addEventListener('click', () => {
+            const cx = viewer.clientWidth / 2;
+            const cy = viewer.clientHeight / 2;
+            const newScale = Math.min(MAX_SCALE, scale * (1 + ZOOM_STEP * 2));
+            offsetX = cx - (cx - offsetX) * (newScale / scale);
+            offsetY = cy - (cy - offsetY) * (newScale / scale);
+            scale = newScale;
+            applyTransform();
+        });
+
+        document.getElementById('btnZoomOut').addEventListener('click', () => {
+            const cx = viewer.clientWidth / 2;
+            const cy = viewer.clientHeight / 2;
+            const newScale = Math.max(MIN_SCALE, scale * (1 - ZOOM_STEP * 2));
+            offsetX = cx - (cx - offsetX) * (newScale / scale);
+            offsetY = cy - (cy - offsetY) * (newScale / scale);
+            scale = newScale;
+            applyTransform();
+        });
+
+        document.getElementById('btnReset').addEventListener('click', centerImage);
+
+        window.addEventListener('resize', centerImage);
+    </script>
 </body>
 </html>
