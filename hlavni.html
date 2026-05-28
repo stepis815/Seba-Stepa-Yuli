@@ -39,8 +39,11 @@
 
     <div class="vedlesebe max">
       <div class="grayblue sidebar">
-        <p  style class="titanic">LORE</p>
- <p style class="Oskar">ahoj</p>
+        <div class="podsebou">
+          <p class="titanic">LORE</p>
+          <p style class="Oskar">ahojda jak moc dobře tohle funguje, jsem velice zvědavý jak moc se to posere bum bum jason vorhees hehe boi deez nuts big chungus triple t</p>
+        </div>
+        
       </div>
 
       <div class="podsebou max">
@@ -59,46 +62,6 @@
               <button class="tlacitko1 kachna"> Info o Polchvarně </button>
             </a>
 
-          <p id="expand-text"></p>
         </div>
       </div>
-    </div>
-
-
-    
-    <script>
-      const texts = {
-        "plan vyvoje": "jak tu udleat tlacko?",
-        "info o hře": "2d vařící simulátor, kdy vy, jako hlavní postava, vaříte v kuchyni s panem Polreichem. Hra obsahuje postupné vylepšení vaší kuchyně, jako je lepší sporák, výpomocní brigádníci nebo třeba i pneumatiky",
-        "info o Polchvarně": "Pan Polchvarna vám chce pomoct udělat nejlepší kuchyn na světě, chce aby jste docílil svému snu být tím nejlepším kuchařem a mít tu nejlepší kuchyn. Někdy panovi Polchvarnovi chytne na nervy, ale je to naprosto normalní, jako příklady tohoto jevu jsou: Házení jídel do rybníků, zničení kuchynských nástroju a vyhození lehce přeudělaného jídla."
-      };
-
-      let active = null;
-
-      function expand(btn) {
-        const allBtns = document.querySelectorAll('.tlacitko1');
-        const textEl = document.getElementById('expand-text');
-
-        if (active === btn) {
-          // close it
-          allBtns.forEach(b => b.style.display = 'block');
-          btn.classList.remove('expanded');
-          textEl.style.display = 'none';
-          active = null;
-          return;
-        }
-
-        allBtns.forEach(b => {
-          b.style.display = 'none';
-          b.classList.remove('expanded');
-        });
-
-        btn.style.display = 'block';
-        btn.classList.add('expanded');
-        textEl.textContent = texts[btn.textContent.trim()];
-        textEl.style.display = 'block';
-        active = btn;
-      }
-    </script>
-  </body>
-</html>
+    </div
