@@ -129,17 +129,25 @@
             inner.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
         }
 
-        function centerImage() {
-            const vw = viewer.clientWidth;
-            const vh = viewer.clientHeight;
-            const iw = img.naturalWidth || 5500;
-            const ih = img.naturalHeight || 100;
+function centerImage() {
+    const vw = viewer.clientWidth;
+    const vh = viewer.clientHeight;
+    const iw = img.naturalWidth || 800;
+    const ih = img.naturalHeight || 600;
 
-            scale = Math.min(vw / iw, vh / ih) * 8;
-            offsetX = (vw - iw * scale) / 2+500;
-            offsetY = (vh - ih * scale) / 2+2600;
-            applyTransform();
-        }
+    // Starting zoom — 1.0 = fit to screen, 2.0 = 2x zoomed in, etc.
+    const startZoom = 5.3;
+    scale = Math.min(vw / iw, vh / ih) * startZoom;
+
+    // Which part of the image to focus on (0.0 to 1.0)
+    const focusX = 0.36; // 0.5 = horizontal center
+    const focusY = 0.09; // 0.3 = 30% from top
+
+    offsetX = vw / 2 - (iw * scale) * focusX;
+    offsetY = vh / 2 - (ih * scale) * focusY;
+
+    applyTransform();
+}
 
         img.addEventListener('load', centerImage);
         if (img.complete && img.naturalWidth) centerImage();
