@@ -105,21 +105,9 @@ html, body {
   
 }
 
-.tlacitko1.expanded {
-  min-height: 200px;
-}
-
 button:hover {
   background-color: rgb(111, 204, 247);
   border-radius: 5px;
-}
-
-#expand-text {
-  display: none;
-  font-size: 18px;
-  text-align: center;
-  margin-top: 10px;
-  padding: 10px;
 }
 
 .p1 h1 {
@@ -185,7 +173,6 @@ button:hover {
   font-size: 70px;
   padding-right: 120px;
 }
-.piskobila { background-color: rgb(252, 175, 147); border-radius: 10px; }
 
 /* color palette */
 
@@ -204,3 +191,6 @@ button:hover {
 .black{
   background-color:rgb(31, 31, 31);
 }
+.piskobila {
+   background-color: rgb(252, 175, 147); border-radius: 10px; 
+  }
