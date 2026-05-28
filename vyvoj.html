@@ -94,17 +94,13 @@
             </a>
         </div>
 
-        <!-- Pan & Zoom Viewer -->
+        <!-- posouvani -->
         <div class="viewer-container" id="viewer">
             <div class="viewer-inner" id="viewerInner">
                 <img src="imgs/vyvojak(3).svg" alt="Plán vývoje" id="viewerImg" draggable="false">
             </div>
 
-            <div class="viewer-controls">
-                <button id="btnZoomIn" title="Přiblížit">+</button>
-                <button id="btnReset" title="Reset">⟳</button>
-                <button id="btnZoomOut" title="Oddálit">−</button>
-            </div>
+        
 
         </div>
     </div>
@@ -135,13 +131,13 @@ function centerImage() {
     const iw = img.naturalWidth || 800;
     const ih = img.naturalHeight || 600;
 
-    // Starting zoom — 1.0 = fit to screen, 2.0 = 2x zoomed in, etc.
+   
     const startZoom = 5.3;
     scale = Math.min(vw / iw, vh / ih) * startZoom;
 
-    // Which part of the image to focus on (0.0 to 1.0)
-    const focusX = 0.36; // 0.5 = horizontal center
-    const focusY = 0.09; // 0.3 = 30% from top
+  
+    const focusX = 0.3546; 
+    const focusY = 0.09; 
 
     offsetX = vw / 2 - (iw * scale) * focusX;
     offsetY = vh / 2 - (ih * scale) * focusY;
@@ -152,7 +148,7 @@ function centerImage() {
         img.addEventListener('load', centerImage);
         if (img.complete && img.naturalWidth) centerImage();
 
-        // Scroll to zoom
+        // zoom mys
         viewer.addEventListener('wheel', (e) => {
             e.preventDefault();
             const rect = viewer.getBoundingClientRect();
@@ -166,7 +162,7 @@ function centerImage() {
             applyTransform();
         }, { passive: false });
 
-        // Drag to pan
+        // posouvani mys
         viewer.addEventListener('mousedown', (e) => {
             if (e.button !== 0) return;
             isDragging = true;
@@ -181,7 +177,7 @@ function centerImage() {
         });
         window.addEventListener('mouseup', () => { isDragging = false; });
 
-        // Touch support
+        // dotyk
         let lastTouchDist = null;
         let touchMidX, touchMidY;
 
@@ -230,30 +226,6 @@ function centerImage() {
             lastTouchDist = null;
         });
 
-        // Buttons
-        document.getElementById('btnZoomIn').addEventListener('click', () => {
-            const cx = viewer.clientWidth / 2;
-            const cy = viewer.clientHeight / 2;
-            const newScale = Math.min(MAX_SCALE, scale * (1 + ZOOM_STEP * 2));
-            offsetX = cx - (cx - offsetX) * (newScale / scale);
-            offsetY = cy - (cy - offsetY) * (newScale / scale);
-            scale = newScale;
-            applyTransform();
-        });
-
-        document.getElementById('btnZoomOut').addEventListener('click', () => {
-            const cx = viewer.clientWidth / 2;
-            const cy = viewer.clientHeight / 2;
-            const newScale = Math.max(MIN_SCALE, scale * (1 - ZOOM_STEP * 2));
-            offsetX = cx - (cx - offsetX) * (newScale / scale);
-            offsetY = cy - (cy - offsetY) * (newScale / scale);
-            scale = newScale;
-            applyTransform();
-        });
-
-        document.getElementById('btnReset').addEventListener('click', centerImage);
-
-        window.addEventListener('resize', centerImage);
     </script>
 </body>
 </html>
