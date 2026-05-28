@@ -110,6 +110,7 @@
     </div>
 
     <script>
+        
         const viewer = document.getElementById('viewer');
         const inner = document.getElementById('viewerInner');
         const img = document.getElementById('viewerImg');
@@ -131,12 +132,12 @@
         function centerImage() {
             const vw = viewer.clientWidth;
             const vh = viewer.clientHeight;
-            const iw = img.naturalWidth || 800;
-            const ih = img.naturalHeight || 600;
+            const iw = img.naturalWidth || 5500;
+            const ih = img.naturalHeight || 100;
 
-            scale = Math.min(vw / iw, vh / ih) * 0.9;
-            offsetX = (vw - iw * scale) / 2;
-            offsetY = (vh - ih * scale) / 2;
+            scale = Math.min(vw / iw, vh / ih) * 8;
+            offsetX = (vw - iw * scale) / 2+500;
+            offsetY = (vh - ih * scale) / 2+2600;
             applyTransform();
         }
 
